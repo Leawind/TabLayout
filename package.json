@@ -1,41 +1,187 @@
 {
-  "name": "tablayout",
-  "displayName": "TabLayout",
-  "description": "Save and load tab layouts in a workspace",
-  "version": "0.0.1",
-  "engines": {
-    "vscode": "^1.99.0"
-  },
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [],
-  "main": "./out/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "tablayout.helloWorld",
-        "title": "Hello World"
-      }
-    ]
-  },
-  "scripts": {
-    "vscode:prepublish": "pnpm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "pnpm run compile && pnpm run lint",
-    "lint": "eslint src",
-    "test": "vscode-test"
-  },
-  "devDependencies": {
-    "@types/vscode": "^1.99.0",
-    "@types/mocha": "^10.0.10",
-    "@types/node": "20.x",
-    "@typescript-eslint/eslint-plugin": "^8.28.0",
-    "@typescript-eslint/parser": "^8.28.0",
-    "eslint": "^9.23.0",
-    "typescript": "^5.8.2",
-    "@vscode/test-cli": "^0.0.10",
-    "@vscode/test-electron": "^2.4.1"
-  }
+	"name": "tab-layout",
+	"displayName": "Tab Layout",
+	"description": "Save and load tab layouts in a workspace",
+	"version": "0.0.1",
+	"pricing": "Free",
+	"publisher": "Leawind",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Leawind/TabLayout"
+	},
+	"engines": {
+		"vscode": "^1.99.0"
+	},
+	"keywords": [
+		"layout",
+		"workspace",
+		"tabs"
+	],
+	"categories": [
+		"Other"
+	],
+	"type": "commonjs",
+	"main": "./out/extension",
+	"icon": "resources/icons/logo.png",
+	"scripts": {
+		"svg-to-font": "node ./out/scripts/svg-to-font.js",
+		"clean": "rimraf ./out",
+		"compile": "tsc -p ./",
+		"test": "vscode-test",
+		"lint": "eslint src",
+		"pretest": "pnpm run compile && pnpm run lint",
+		"recompile": "run-s clean compile",
+		"vscode:prepublish": "pnpm run recompile",
+		"watch": "tsc -watch -p ./"
+	},
+	"activationEvents": [],
+	"contributes": {
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "tab-layout",
+					"title": "Tab Layout",
+					"icon": "$(tab-layouts)",
+					"when": "workspaceFolderCount == 1"
+				}
+			]
+		},
+		"views": {
+			"tab-layout": [
+				{
+					"id": "tab-layout",
+					"name": "Tab layout",
+					"visibility": "visible",
+					"icon": "$(tab-layouts)",
+					"initialSize": 20,
+					"type": "tree",
+					"when": "workspaceFolderCount == 1"
+				}
+			]
+		},
+		"menus": {
+			"view/title": [
+				{
+					"command": "tab-layout.disable",
+					"group": "navigation@1",
+					"when": "view == tab-layout && tab-layout.enabled"
+				},
+				{
+					"command": "tab-layout.new",
+					"group": "navigation@2",
+					"when": "view == tab-layout"
+				}
+			],
+			"view/item/context": [
+				{
+					"command": "tab-layout.load",
+					"group": "inline@1",
+					"when": "view == tab-layout && viewItem == inactive"
+				},
+				{
+					"command": "tab-layout.save_as",
+					"group": "inline@1",
+					"when": "view == tab-layout && viewItem == inactive"
+				},
+				{
+					"command": "tab-layout.delete",
+					"group": "inline@2",
+					"when": "view == tab-layout"
+				},
+				{
+					"command": "tab-layout.load",
+					"group": "navigation",
+					"when": "view == tab-layout && viewItem == inactive"
+				},
+				{
+					"command": "tab-layout.delete",
+					"group": "7_modification",
+					"when": "view == tab-layout"
+				},
+				{
+					"command": "tab-layout.rename",
+					"group": "7_modification",
+					"when": "view == tab-layout"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "tab-layout.new",
+				"title": "Create a new layout",
+				"icon": "$(add)",
+				"when": "false"
+			},
+			{
+				"command": "tab-layout.load",
+				"title": "Load layout",
+				"icon": "$(run)",
+				"when": "false"
+			},
+			{
+				"command": "tab-layout.save_as",
+				"title": "Save current layout as",
+				"icon": "$(save-as)",
+				"when": "false"
+			},
+			{
+				"command": "tab-layout.delete",
+				"title": "Delete layout",
+				"icon": "$(trash)",
+				"when": "false"
+			},
+			{
+				"command": "tab-layout.rename",
+				"title": "Rename layout",
+				"when": "false"
+			},
+			{
+				"command": "tab-layout.disable",
+				"title": "Disable layout",
+				"icon": "$(circle-slash)",
+				"when": "workspaceFolderCount == 1 && tab-layout.enabled"
+			}
+		],
+		"icons": {
+			"tab-layouts": {
+				"description": "Tab Layouts",
+				"default": {
+					"fontPath": "./resources/fonts/icons.woff",
+					"fontCharacter": "\\E001"
+				}
+			},
+			"tab-layout": {
+				"description": "Tab Layout",
+				"default": {
+					"fontPath": "./resources/fonts/icons.woff",
+					"fontCharacter": "\\E002"
+				}
+			},
+			"tab-layout-inactive": {
+				"description": "Tab Layout",
+				"default": {
+					"fontPath": "./resources/fonts/icons.woff",
+					"fontCharacter": "\\E003"
+				}
+			}
+		}
+	},
+	"devDependencies": {
+		"@types/mocha": "^10.0.10",
+		"@types/node": "~22.14.1",
+		"@types/vscode": "^1.99.1",
+		"@typescript-eslint/eslint-plugin": "^8.29.1",
+		"@typescript-eslint/parser": "^8.29.1",
+		"@vscode/test-cli": "^0.0.10",
+		"@vscode/test-electron": "^2.5.2",
+		"csvg-to-font": "^1.0.20",
+		"eslint": "^9.24.0",
+		"npm-run-all": "^4.1.5",
+		"rimraf": "^6.0.1",
+		"typescript": "^5.8.3"
+	},
+	"dependencies": {
+		"@leawind/inventory": "npm:@jsr/leawind__inventory@^0.7.0"
+	}
 }
