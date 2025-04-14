@@ -10,9 +10,8 @@ vsc-extension-quickstart.md
 **/*.ts
 **/.vscode-test.*
 
-node_modules/**
 test/**
-
 resources/icons-src/**
 resources/**/*.svg
 src/test/**
+**/*.vsix
