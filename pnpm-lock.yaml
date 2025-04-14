@@ -7,10 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      '@leawind/inventory':
-        specifier: npm:@jsr/leawind__inventory@^0.7.0
-        version: '@jsr/leawind__inventory@0.7.0'
     devDependencies:
       '@types/mocha':
         specifier: ^10.0.10
@@ -497,9 +493,6 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
-
-  '@jsr/leawind__inventory@0.7.0':
-    resolution: {integrity: sha512-XWdQ6IDvRLgC74kzi3mMFw6wBqziAfJVNjLsc7bpckj/bQdLwhTliklXf6M03EUjq/rG6AJZjlQCSuFCRa+e0A==, tarball: https://npm.jsr.io/~/11/@jsr/leawind__inventory/0.7.0.tgz}
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -3267,8 +3260,6 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
-
-  '@jsr/leawind__inventory@0.7.0': {}
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
