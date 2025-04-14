@@ -35,7 +35,9 @@
 		"vscode:prepublish": "pnpm run recompile",
 		"watch": "tsc -watch -p ./"
 	},
-	"activationEvents": [],
+	"activationEvents": [
+		"onStartupFinished"
+	],
 	"contributes": {
 		"viewsContainers": {
 			"activitybar": [
