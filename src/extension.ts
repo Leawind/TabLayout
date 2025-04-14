@@ -7,6 +7,8 @@ import { TabLayoutSystemImpl } from "./core/TabLayoutImpl";
 
 class UserCanceledError extends Error { }
 
+let onDeactivate: undefined | (() => void);
+
 /**
  * Called when extension is activated
  * 
@@ -201,7 +203,7 @@ export async function activate(ctx: vscode.ExtensionContext) {
 		vscode.window.onDidChangeVisibleTextEditors(onChange);
 		vscode.window.onDidChangeTextEditorVisibleRanges(onChange);
 		vscode.window.onDidChangeTextEditorViewColumn(onChange);
-
+		onDeactivate = () => saveAction.executeImmediately();
 	}
 	{
 		// Update when clause context
@@ -218,4 +220,7 @@ export async function activate(ctx: vscode.ExtensionContext) {
  * Called when extension is deactivated
  */
 export function deactivate() {
+	if (onDeactivate !== undefined) {
+		onDeactivate();
+	}
 }
