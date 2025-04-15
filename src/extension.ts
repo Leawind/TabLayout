@@ -4,7 +4,6 @@ import * as CONSTS from './constants';
 import { TabLayoutTreeDataProvider } from "./core/TabLayoutTreeDataProvider";
 import { TabLayoutSystem } from "./core/TabLayout";
 import { TabLayoutSystemImpl } from "./core/TabLayoutImpl";
-// import { Lock, ThrottledAction } from "./utils/inventory/index";
 
 class UserCanceledError extends Error { }
 

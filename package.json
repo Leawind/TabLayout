@@ -186,6 +186,6 @@
 		"typescript": "^5.8.3"
 	},
 	"dependencies": {
-		"@leawind/inventory": "^0.8.1"
+		"@leawind/inventory": "npm:@jsr/leawind__inventory@^0.8.1"
 	}
 }
