@@ -3,9 +3,7 @@
 		"module": "NodeNext",
 		"target": "ESNext",
 		"outDir": "out",
-		"lib": [
-			"ESNext",
-		],
+		"lib": ["ESNext"],
 		"sourceMap": false,
 		"inlineSourceMap": true,
 		"inlineSources": true,
@@ -21,13 +19,8 @@
 		"noImplicitReturns": true,
 		"noFallthroughCasesInSwitch": true,
 		"noUnusedLocals": true,
-		"noImplicitOverride": true,
+		"noImplicitOverride": true
 	},
-	"exclude": [
-		".vscode",
-		"node_modules",
-	],
-	"include": [
-		"src/**/*.ts",
-	],
+	"exclude": [".vscode", "node_modules"],
+	"include": ["src/**/*.ts"]
 }

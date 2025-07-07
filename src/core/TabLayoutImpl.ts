@@ -1,8 +1,7 @@
-import * as vscode from "vscode";
+import * as vscode from 'vscode';
 
-import { TabLayoutSystem } from "./TabLayout";
+import { TabLayoutSystem } from './TabLayout';
 import * as CONSTS from '../constants';
-
 
 enum GroupOrientation {
 	HORIZONTAL,
@@ -25,7 +24,6 @@ interface GroupLayoutArgument {
 	readonly groups?: GroupLayoutArgument[];
 }
 interface EditorGroupLayout {
-
 	/**
 	 * The initial orientation of the editor groups at the root.
 	 */
@@ -39,40 +37,47 @@ interface EditorGroupLayout {
 
 type TabInputSnapshot =
 	| {
-		type: 'TabInputText';
-		uri: string;
-		relativePath?: string;
-	} | {
-		type: 'TabInputTextDiff';
-		original: string;
-		originalRelativePath?: string;
-		modified: string;
-		modifiedRelativePath?: string;
-	} | {
-		type: 'TabInputCustom';
-		uri: string;
-		relativePath?: string;
-		viewType: string;
-	} | {
-		type: 'TabInputWebview';
-		viewType: string;
-	} | {
-		type: 'TabInputNotebook';
-		uri: string;
-		relativePath?: string;
-		notebookType: string;
-	} | {
-		type: 'TabInputNotebookDiff';
-		original: string;
-		originalRelativePath?: string;
-		modified: string;
-		modifiedRelativePath?: string;
-		notebookType: string;
-	} | {
-		type: 'TabInputTerminal';
-	} | {
-		type: 'unknown';
-	};
+			type: 'TabInputText';
+			uri: string;
+			relativePath?: string;
+	  }
+	| {
+			type: 'TabInputTextDiff';
+			original: string;
+			originalRelativePath?: string;
+			modified: string;
+			modifiedRelativePath?: string;
+	  }
+	| {
+			type: 'TabInputCustom';
+			uri: string;
+			relativePath?: string;
+			viewType: string;
+	  }
+	| {
+			type: 'TabInputWebview';
+			viewType: string;
+	  }
+	| {
+			type: 'TabInputNotebook';
+			uri: string;
+			relativePath?: string;
+			notebookType: string;
+	  }
+	| {
+			type: 'TabInputNotebookDiff';
+			original: string;
+			originalRelativePath?: string;
+			modified: string;
+			modifiedRelativePath?: string;
+			notebookType: string;
+	  }
+	| {
+			type: 'TabInputTerminal';
+	  }
+	| {
+			type: 'unknown';
+	  };
 
 type TabSnapshot = {
 	input: TabInputSnapshot;
@@ -86,7 +91,7 @@ type TabGroupSnapshot = {
 	/**
 	 * @see vscode.TabGroup.tabs
 	 * @see vscode.Tab
-	*/
+	 */
 	tabs: TabSnapshot[];
 };
 
@@ -107,7 +112,6 @@ export type LayoutSnapshot = {
 };
 
 export class TabLayoutSystemImpl extends TabLayoutSystem<LayoutSnapshot> {
-
 	public constructor(
 		private readonly ctx: vscode.ExtensionContext,
 		public folder?: vscode.WorkspaceFolder
@@ -135,7 +139,7 @@ export class TabLayoutSystemImpl extends TabLayoutSystem<LayoutSnapshot> {
 	public async getActiveLayoutName(): Promise<string | undefined> {
 		let name = this.ctx.workspaceState.get(CONSTS.STATE_KEY_ACTIVE_LAYOUT) as string;
 		if (name) {
-			if (!await this.hasLayout(name)) {
+			if (!(await this.hasLayout(name))) {
 				console.warn(`Active layout '${name}' does not exist!`);
 				this.ctx.workspaceState.update(CONSTS.STATE_KEY_ACTIVE_LAYOUT, undefined);
 				return undefined;
@@ -156,10 +160,10 @@ export class TabLayoutSystemImpl extends TabLayoutSystem<LayoutSnapshot> {
 	public async takeLayoutSnapshot(): Promise<LayoutSnapshot> {
 		return {
 			timestamp: Date.now(),
-			tabGroups: vscode.window.tabGroups.all.map(group => ({
+			tabGroups: vscode.window.tabGroups.all.map((group) => ({
 				viewColumn: group.viewColumn,
 				activeTabIndex: group.activeTab ? group.tabs.indexOf(group.activeTab) : undefined,
-				tabs: group.tabs.map(tab => {
+				tabs: group.tabs.map((tab) => {
 					let input: TabInputSnapshot;
 					if (tab.input instanceof vscode.TabInputText) {
 						input = {
@@ -216,14 +220,14 @@ export class TabLayoutSystemImpl extends TabLayoutSystem<LayoutSnapshot> {
 						isPinned: tab.isPinned,
 						isPreview: tab.isPreview,
 					};
-				})
+				}),
 			})),
-			editorLayout: await vscode.commands.executeCommand('vscode.getEditorLayout') as EditorGroupLayout,
+			editorLayout: (await vscode.commands.executeCommand('vscode.getEditorLayout')) as EditorGroupLayout,
 		};
 	}
 	public async restoreLayout(layout: LayoutSnapshot): Promise<void> {
 		await vscode.commands.executeCommand('workbench.action.closeAllEditors');
-		await vscode.commands.executeCommand("vscode.setEditorLayout", layout.editorLayout);
+		await vscode.commands.executeCommand('vscode.setEditorLayout', layout.editorLayout);
 
 		const promises: Promise<void>[] = [];
 		for (const group of layout.tabGroups) {
@@ -258,7 +262,7 @@ export class TabLayoutSystemImpl extends TabLayoutSystem<LayoutSnapshot> {
 				await vscode.window.showTextDocument(document, {
 					viewColumn,
 					preview: tab.isPreview,
-					preserveFocus: true
+					preserveFocus: true,
 				});
 				break;
 			}
@@ -338,9 +342,9 @@ export class TabLayoutSystemImpl extends TabLayoutSystem<LayoutSnapshot> {
 
 			this.onDidChangeLayoutsEmitter.fire();
 
-			if (await this.getActiveLayoutName() === name) {
+			if ((await this.getActiveLayoutName()) === name) {
 				await this.setActiveLayoutName(newName);
 			}
 		}
 	}
-};
+}

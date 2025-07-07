@@ -1,19 +1,19 @@
-import * as vscode from "vscode";
+import * as vscode from 'vscode';
 
 import * as CONSTS from './constants';
-import { TabLayoutTreeDataProvider } from "./core/TabLayoutTreeDataProvider";
-import { TabLayoutSystem } from "./core/TabLayout";
-import { TabLayoutSystemImpl } from "./core/TabLayoutImpl";
+import { TabLayoutTreeDataProvider } from './core/TabLayoutTreeDataProvider';
+import { TabLayoutSystem } from './core/TabLayout';
+import { TabLayoutSystemImpl } from './core/TabLayoutImpl';
 
-class UserCanceledError extends Error { }
+class UserCanceledError extends Error {}
 
 let onDeactivate: undefined | (() => void);
 
 /**
  * Called when extension is activated
- * 
+ *
  * The extension is activated the very first time the command is executed
-*/
+ */
 export async function activate(ctx: vscode.ExtensionContext) {
 	const { Lock } = await import('@leawind/inventory/lock');
 	const { ThrottledAction } = await import('@leawind/inventory/throttled_action');
@@ -26,8 +26,8 @@ export async function activate(ctx: vscode.ExtensionContext) {
 	const lock = Lock.of(CONSTS.EXTENSION_ID);
 
 	async function checkAvailable(): Promise<boolean> {
-		if (!await system.available()) {
-			vscode.window.showErrorMessage("TabLayout is not available for current workspace!");
+		if (!(await system.available())) {
+			vscode.window.showErrorMessage('TabLayout is not available for current workspace!');
 			return false;
 		}
 		return true;
@@ -51,11 +51,11 @@ export async function activate(ctx: vscode.ExtensionContext) {
 			placeHolder: 'Layout Name',
 			prompt: `Enter a name for the new layout, or leave it empty to use '${defaultName}'`,
 			validateInput: async (value) => {
-				if (await system.getLayout(value) !== undefined) {
+				if ((await system.getLayout(value)) !== undefined) {
 					return 'Layout name already exists';
 				}
 				return null;
-			}
+			},
 		});
 		if (name === undefined) {
 			throw new UserCanceledError();
@@ -98,7 +98,7 @@ export async function activate(ctx: vscode.ExtensionContext) {
 	}
 	{
 		statusBarItem.command = CONSTS.COMMAND_FOCUS;
-		statusBarItem.text = "Tab Layout";
+		statusBarItem.text = 'Tab Layout';
 		ctx.subscriptions.push(statusBarItem);
 
 		system.onDidChangeActiveLayout(updateStatusBarItem);
@@ -147,7 +147,7 @@ export async function activate(ctx: vscode.ExtensionContext) {
 				if (typeof oldName !== 'string') {
 					return;
 				}
-				const isActive = await system.getActiveLayoutName() === oldName;
+				const isActive = (await system.getActiveLayoutName()) === oldName;
 				newName ||= await pickNewLayoutName();
 				await system.renameLayout(oldName, newName);
 				if (isActive) {
@@ -210,10 +210,14 @@ export async function activate(ctx: vscode.ExtensionContext) {
 		// Update when clause context
 
 		vscode.commands.executeCommand('setContext', CONSTS.WHEN_AVAILABLE, await system.available());
-		vscode.workspace.onDidChangeWorkspaceFolders(async () => vscode.commands.executeCommand('setContext', CONSTS.WHEN_AVAILABLE, await system.available()));
+		vscode.workspace.onDidChangeWorkspaceFolders(async () =>
+			vscode.commands.executeCommand('setContext', CONSTS.WHEN_AVAILABLE, await system.available())
+		);
 
 		vscode.commands.executeCommand('setContext', CONSTS.WHEN_ENABLED, await system.enabled());
-		system.onDidChangeActiveLayout(async (name) => vscode.commands.executeCommand('setContext', CONSTS.WHEN_ENABLED, !!name));
+		system.onDidChangeActiveLayout(async (name) =>
+			vscode.commands.executeCommand('setContext', CONSTS.WHEN_ENABLED, !!name)
+		);
 	}
 }
 

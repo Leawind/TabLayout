@@ -1,16 +1,15 @@
-import * as vscode from "vscode";
+import * as vscode from 'vscode';
 
 /**
  * @template LayoutSnapshotType Type of layout
  */
 export abstract class TabLayoutSystem<LayoutSnapshotType> {
-
 	protected onDidChangeActiveLayoutEmitter = new vscode.EventEmitter<string | undefined>();
-	public readonly onDidChangeActiveLayout: vscode.Event<string | undefined> = this.onDidChangeActiveLayoutEmitter.event;
+	public readonly onDidChangeActiveLayout: vscode.Event<string | undefined> =
+		this.onDidChangeActiveLayoutEmitter.event;
 
 	protected onDidChangeLayoutsEmitter = new vscode.EventEmitter<void>();
 	public readonly onDidChangeLayouts: vscode.Event<void> = this.onDidChangeLayoutsEmitter.event;
-
 
 	/**
 	 * Is this extension available for current window?
@@ -29,13 +28,13 @@ export abstract class TabLayoutSystem<LayoutSnapshotType> {
 
 	/**
 	 * Get name of active layout
-	 * 
+	 *
 	 * @returns name of active layout, or `undefined` if no layout is active
 	 */
 	public abstract getActiveLayoutName(): Promise<string | undefined>;
 
 	public async enabled(): Promise<boolean> {
-		return !!await this.getActiveLayoutName();
+		return !!(await this.getActiveLayoutName());
 	}
 
 	/**
@@ -74,4 +73,4 @@ export abstract class TabLayoutSystem<LayoutSnapshotType> {
 	 * Rename layout with given name
 	 */
 	public abstract renameLayout(name: string, newName: string): Promise<void>;
-};
+}

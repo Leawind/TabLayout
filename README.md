@@ -6,27 +6,27 @@ Manage layouts in a workspace
 
 ## Features
 
--   Manage layouts in a workspace
--   Switch between saved layouts
--   Show current layout name in status bar
+- Manage layouts in a workspace
+- Switch between saved layouts
+- Show current layout name in status bar
 
     ![status-bar](./resources/demos/status-bar.png)
 
 ### What information do a layout contain
 
--   **Tab groups** and their **tabs**
--   **Orientation** and **size** of each tab groups
+- **Tab groups** and their **tabs**
+- **Orientation** and **size** of each tab groups
 
 ### How layouts stored
 
 Layouts are stored at `${workspaceRoot}/.vscode/layouts/${layoutName}.json`
 
--   if any layout is selected, auto save to that active layout
--   If no layout is selected, won't auto save
+- if any layout is selected, auto save to that active layout
+- If no layout is selected, won't auto save
 
 ## Limitations
 
--   Only available for single root workspaces, which is the most common use case.
+- Only available for single root workspaces, which is the most common use case.
 
 ## When clause context
 

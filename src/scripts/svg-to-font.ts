@@ -1,6 +1,6 @@
 import { svg2Font } from 'csvg-to-font';
 
-const START_CODE = 0xE000;
+const START_CODE = 0xe000;
 const FONT_NAME = 'icons';
 
 let map = new Map<number, string>();
@@ -25,7 +25,7 @@ function getIconUnicode(name: string): [string, number] {
 
 	console.log(`0x${code.toString(16)} ==> ${name}`);
 	return [String.fromCharCode(code), code];
-};
+}
 
 svg2Font({
 	src: 'resources/icons',
@@ -47,7 +47,6 @@ svg2Font({
 	typescript: false,
 
 	getIconUnicode,
-
 });
 
 console.log('Done');
