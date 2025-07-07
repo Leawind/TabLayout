@@ -8,6 +8,7 @@ let map = new Map<number, string>();
 function getIconUnicode(name: string): [string, number] {
 	let code: number;
 
+	// 0x<Code>-<Name>.svg
 	const match = /^(0x[0-9A-F]+)([^0-9A-F].*)?$/i.exec(name);
 	if (match !== null) {
 		code = parseInt(match[1]);
