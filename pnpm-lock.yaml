@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@leawind/inventory':
-        specifier: npm:@jsr/leawind__inventory@^0.8.4
-        version: '@jsr/leawind__inventory@0.8.4'
+        specifier: npm:@jsr/leawind__inventory@^0.11.1
+        version: '@jsr/leawind__inventory@0.11.1'
     devDependencies:
       '@types/mocha':
         specifier: ^10.0.10
@@ -561,8 +561,14 @@ packages:
   '@jsr/leawind__delegate@0.4.1':
     resolution: {integrity: sha512-CgmIRxvMD6yu4Ms6Un9XZl/1IReOiMGPkXXg/2S730WFKLFu7gnLqIFCnTwnT3dL4N0CUkEurM9YivT/WU0+Vw==, tarball: https://npm.jsr.io/~/11/@jsr/leawind__delegate/0.4.1.tgz}
 
-  '@jsr/leawind__inventory@0.8.4':
-    resolution: {integrity: sha512-1V6jsF5BOJkg4dwNd6WOXwLehIt+UvV61eZMt/6GjwATM47okRx6rxUzw/CRG81ON998/Vbav/W0mLQBAyDzkw==, tarball: https://npm.jsr.io/~/11/@jsr/leawind__inventory/0.8.4.tgz}
+  '@jsr/leawind__inventory@0.11.1':
+    resolution: {integrity: sha512-p1L0WJghryOdsLTqrHcDwYqElCqBOkpnpB3yxT6gsABj7plrpFZ5tVGBoMgbeCloYI2Ix56wfr7VtKurkaW3cQ==, tarball: https://npm.jsr.io/~/11/@jsr/leawind__inventory/0.11.1.tgz}
+
+  '@jsr/std__internal@1.0.9':
+    resolution: {integrity: sha512-s+f4qrJzZgPAy7XuFOtgaSaxyPLnnEmAfXGLvRXGxPTL76URLVHkF+hOzqXz+bmk8/awybF6BRsasxtAQOV23Q==, tarball: https://npm.jsr.io/~/11/@jsr/std__internal/1.0.9.tgz}
+
+  '@jsr/std__path@1.1.1':
+    resolution: {integrity: sha512-+x5LgcNUSpMzOZIRmFSjqrMTCxHlgXjWzK8ZFr7lwgHfWZxoVXeis3MFQlkR5mN5uQ61Y1P30Li1PU0yx9uluA==, tarball: https://npm.jsr.io/~/11/@jsr/std__path/1.1.1.tgz}
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -4053,9 +4059,16 @@ snapshots:
 
   '@jsr/leawind__delegate@0.4.1': {}
 
-  '@jsr/leawind__inventory@0.8.4':
+  '@jsr/leawind__inventory@0.11.1':
     dependencies:
       '@jsr/leawind__delegate': 0.4.1
+      '@jsr/std__path': 1.1.1
+
+  '@jsr/std__internal@1.0.9': {}
+
+  '@jsr/std__path@1.1.1':
+    dependencies:
+      '@jsr/std__internal': 1.0.9
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:

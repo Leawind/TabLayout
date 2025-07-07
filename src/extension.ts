@@ -15,14 +15,15 @@ let onDeactivate: undefined | (() => void);
  * The extension is activated the very first time the command is executed
 */
 export async function activate(ctx: vscode.ExtensionContext) {
-	const { Lock, ThrottledAction } = await import("@leawind/inventory");
+	const { Lock } = await import('@leawind/inventory/lock');
+	const { ThrottledAction } = await import('@leawind/inventory/throttled_action');
 
 	////////////////////////////////////////////////////////////////
 	// Pick implementation
 	////////////////////////////////////////////////////////////////
 
 	const system: TabLayoutSystem<any> = new TabLayoutSystemImpl(ctx);
-	const lock = new Lock();
+	const lock = Lock.of(CONSTS.EXTENSION_ID);
 
 	async function checkAvailable(): Promise<boolean> {
 		if (!await system.available()) {
@@ -195,7 +196,7 @@ export async function activate(ctx: vscode.ExtensionContext) {
 		async function onChange() {
 			if (await system.available()) {
 				if (lock.getOwner() !== CONSTS.COMMAND_LOAD) {
-					saveAction.urge();
+					saveAction.execute();
 				}
 			}
 		}

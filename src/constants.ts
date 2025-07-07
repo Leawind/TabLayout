@@ -1,3 +1,6 @@
+// Metadata
+export const EXTENSION_ID = "tab-layout";
+
 // Storage
 export const LAYOUTS_DIR = '.vscode/layouts';
 
