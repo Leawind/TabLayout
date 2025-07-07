@@ -1,17 +1,23 @@
 .vscode/**
 .vscode-test/**
-src/**
+**/.vscode-test.*
+
 .gitignore
+
 .yarnrc
-vsc-extension-quickstart.md
+
+.prettierignore
+
 **/tsconfig.json
 **/eslint.config.mjs
 **/*.map
 **/*.ts
-**/.vscode-test.*
 
 test/**
 resources/icons-src/**
 resources/**/*.svg
+src/**
 src/test/**
 **/*.vsix
+
+docs/**
