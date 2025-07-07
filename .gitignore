@@ -2,8 +2,11 @@ out/
 dist/
 node_modules/
 .vscode-test/
+
+# Packaged extension
 *.vsix
 
 test/**/.vscode/layouts/
-
 .vscode/layouts/
+
+/docs/
