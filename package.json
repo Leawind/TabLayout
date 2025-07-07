@@ -75,6 +75,11 @@
 					"command": "tab-layout.new",
 					"group": "navigation@2",
 					"when": "view == tab-layout"
+				},
+				{
+					"command": "tab-layout.refresh_layouts",
+					"group": "navigation@3",
+					"when": "view == tab-layout"
 				}
 			],
 			"view/item/context": [
@@ -111,6 +116,12 @@
 			]
 		},
 		"commands": [
+			{
+				"command": "tab-layout.refresh_layouts",
+				"title": "Refresh layouts",
+				"icon": "$(refresh)",
+				"when": "false"
+			},
 			{
 				"command": "tab-layout.new",
 				"title": "Create a new layout",

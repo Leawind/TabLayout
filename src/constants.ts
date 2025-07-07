@@ -17,6 +17,7 @@ export const COMMAND_SAVE_AS = 'tab-layout.save_as';
 export const COMMAND_DELETE = 'tab-layout.delete';
 export const COMMAND_RENAME = 'tab-layout.rename';
 export const COMMAND_DISABLE = 'tab-layout.disable';
+export const COMMAND_REFRESH_LAYOUTS = 'tab-layout.refresh_layouts';
 
 // When clause context
 export const WHEN_AVAILABLE = 'tab-layout.available';

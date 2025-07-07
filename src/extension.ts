@@ -110,6 +110,9 @@ export async function activate(ctx: vscode.ExtensionContext) {
 	////////////////////////////////////////////////////////////////
 	{
 		const commands: Record<string, (...args: any[]) => any> = {
+			[CONSTS.COMMAND_REFRESH_LAYOUTS]: async () => {
+				tabLayoutProvider.update();
+			},
 			[CONSTS.COMMAND_NEW]: async () => {
 				const name = await pickNewLayoutName();
 				const snapshot = await system.takeLayoutSnapshot();
