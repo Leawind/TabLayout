@@ -41,16 +41,6 @@
 		"onStartupFinished"
 	],
 	"contributes": {
-		"viewsContainers": {
-			"activitybar": [
-				{
-					"id": "tab-layout",
-					"title": "Tab Layout",
-					"icon": "$(tab-layouts)",
-					"when": "workspaceFolderCount == 1"
-				}
-			]
-		},
 		"views": {
 			"tab-layout": [
 				{
