@@ -35,7 +35,8 @@
 		"recompile": "run-s clean compile",
 		"vscode:prepublish": "pnpm run recompile",
 		"watch": "tsc -watch -p ./",
-		"package": "vsce package --follow-symlinks"
+		"vsce:package": "vsce package --follow-symlinks",
+		"vsce:publish": "vsce publish --follow-symlinks"
 	},
 	"activationEvents": [
 		"onStartupFinished"
