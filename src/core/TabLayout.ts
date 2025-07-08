@@ -1,5 +1,10 @@
 import * as vscode from 'vscode';
 
+export enum SortMethod {
+	NAME = 'name',
+	RECENT = 'recent',
+}
+
 /**
  * @template LayoutSnapshotType Type of layout
  */
@@ -15,6 +20,15 @@ export abstract class TabLayoutSystem<LayoutSnapshotType> {
 	 * Is this extension available for current window?
 	 */
 	public abstract available(): Promise<boolean>;
+
+	/**
+	 * Get the sorting method
+	 */
+	public abstract get sortBy(): SortMethod;
+	/**
+	 * Set the sorting method
+	 */
+	public abstract set sortBy(by: SortMethod);
 
 	/**
 	 * Take a snapshot of current layout using vscode api
@@ -46,8 +60,10 @@ export abstract class TabLayoutSystem<LayoutSnapshotType> {
 
 	/**
 	 * List all layout names in current workspace
+	 *
+	 * @param sort whether to sort the results, default to `true`
 	 */
-	public abstract listLayoutNames(): Promise<string[]>;
+	public abstract listLayoutNames(sort?: boolean): Promise<string[]>;
 
 	/**
 	 * Check if layout with given name exists

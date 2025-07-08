@@ -30,7 +30,7 @@ export class TabLayoutTreeDataProvider<LayoutSnapshotType> implements vscode.Tre
 	}
 	public getChildren(element?: string): vscode.ProviderResult<string[]> {
 		if (element === undefined) {
-			return this.sys.listLayoutNames();
+			return this.sys.listLayoutNames(true);
 		} else {
 			return [];
 		}

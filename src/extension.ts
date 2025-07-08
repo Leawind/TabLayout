@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 
 import * as CONSTS from './constants';
 import { TabLayoutTreeDataProvider } from './core/TabLayoutTreeDataProvider';
-import { TabLayoutSystem } from './core/TabLayout';
+import { SortMethod, TabLayoutSystem } from './core/TabLayout';
 import { TabLayoutSystemImpl } from './core/TabLayoutImpl';
 
 class UserCanceledError extends Error {}
@@ -39,7 +39,7 @@ export async function activate(ctx: vscode.ExtensionContext) {
 	async function pickNewLayoutName(): Promise<string> {
 		let defaultName;
 		{
-			const names = await system.listLayoutNames();
+			const names = await system.listLayoutNames(false);
 			let i = 1;
 			do {
 				defaultName = `layout-${i++}`;
@@ -110,6 +110,18 @@ export async function activate(ctx: vscode.ExtensionContext) {
 	////////////////////////////////////////////////////////////////
 	{
 		const commands: Record<string, (...args: any[]) => any> = {
+			[CONSTS.COMMAND_SORT_BY_NAME]: async () => {
+				system.sortBy = SortMethod.NAME;
+				vscode.commands.executeCommand('setContext', CONSTS.WHEN_SORT_BY, system.sortBy);
+				tabLayoutProvider.update();
+			},
+			[CONSTS.COMMAND_SORT_BY_RECENT]: async () => {
+				system.sortBy = SortMethod.RECENT;
+				vscode.commands.executeCommand('setContext', CONSTS.WHEN_SORT_BY, system.sortBy);
+				tabLayoutProvider.update();
+			},
+			[CONSTS.COMMAND_SORT_BY_NAME_CHECKED]: () => {},
+			[CONSTS.COMMAND_SORT_BY_RECENT_CHECKED]: () => {},
 			[CONSTS.COMMAND_REFRESH_LAYOUTS]: async () => {
 				tabLayoutProvider.update();
 			},
@@ -129,7 +141,7 @@ export async function activate(ctx: vscode.ExtensionContext) {
 					await system.restoreLayout(snapshot);
 					await system.setActiveLayoutName(name);
 				} else {
-					vscode.window.showErrorMessage(`Failed to load layout ${name}`);
+					vscode.window.showErrorMessage(`Failed to load layout: "${name}"`);
 				}
 			},
 			[CONSTS.COMMAND_SAVE_AS]: async (name: string) => {
@@ -211,6 +223,8 @@ export async function activate(ctx: vscode.ExtensionContext) {
 	}
 	{
 		// Update when clause context
+
+		vscode.commands.executeCommand('setContext', CONSTS.WHEN_SORT_BY, system.sortBy);
 
 		vscode.commands.executeCommand('setContext', CONSTS.WHEN_AVAILABLE, await system.available());
 		vscode.workspace.onDidChangeWorkspaceFolders(async () =>

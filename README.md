@@ -30,7 +30,8 @@ Layouts are stored at `${workspaceRoot}/.vscode/layouts/${layoutName}.json`
 
 ## When clause context
 
-| Key                    | Type    | Description                                                                                                                     |
-| ---------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| `tab-layout.available` | boolean | Indicates whether the TabLayout extension is available for the current workspace (`true` when workspace has exactly one folder) |
-| `tab-layout.enabled`   | boolean | Indicates whether a layout is currently active (`true` when there's an layout selected)                                         |
+| Key                    | Type      | Description                                                                                                                     |
+| ---------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `tab-layout.sort_by`   | `string`  | Sort method for layouts in tree view. Values: `'name'`, `'recent'`                                                              |
+| `tab-layout.available` | `boolean` | Indicates whether the TabLayout extension is available for the current workspace (`true` when workspace has exactly one folder) |
+| `tab-layout.enabled`   | `boolean` | Indicates whether a layout is currently active (`true` when there's an layout selected)                                         |

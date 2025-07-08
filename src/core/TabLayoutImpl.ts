@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 
-import { TabLayoutSystem } from './TabLayout';
+import { SortMethod, TabLayoutSystem } from './TabLayout';
 import * as CONSTS from '../constants';
 
 enum GroupOrientation {
@@ -114,7 +114,8 @@ export type LayoutSnapshot = {
 export class TabLayoutSystemImpl extends TabLayoutSystem<LayoutSnapshot> {
 	public constructor(
 		private readonly ctx: vscode.ExtensionContext,
-		public folder?: vscode.WorkspaceFolder
+		public folder?: vscode.WorkspaceFolder,
+		public sortBy: SortMethod = SortMethod.RECENT
 	) {
 		super();
 
@@ -136,6 +137,7 @@ export class TabLayoutSystemImpl extends TabLayoutSystem<LayoutSnapshot> {
 	public async available(): Promise<boolean> {
 		return vscode.workspace.workspaceFolders?.length === 1;
 	}
+
 	public async getActiveLayoutName(): Promise<string | undefined> {
 		let name = this.ctx.workspaceState.get(CONSTS.STATE_KEY_ACTIVE_LAYOUT) as string;
 		if (name) {
@@ -239,7 +241,7 @@ export class TabLayoutSystemImpl extends TabLayoutSystem<LayoutSnapshot> {
 				try {
 					promises.push(this.openTab(tab, group.viewColumn));
 				} catch (e) {
-					console.warn(`Failed to load tab: ${e}`);
+					console.warn(`Failed to load tab: "${e}"`);
 				}
 			}
 			if (activeTab) {
@@ -271,12 +273,39 @@ export class TabLayoutSystemImpl extends TabLayoutSystem<LayoutSnapshot> {
 		}
 	}
 
-	public async listLayoutNames(): Promise<string[]> {
+	public async listLayoutNames(sort: boolean = false): Promise<string[]> {
 		const layoutsDir = vscode.Uri.joinPath(this.folder!.uri, CONSTS.LAYOUTS_DIR);
 		try {
-			return (await vscode.workspace.fs.readDirectory(layoutsDir))
+			const names = (await vscode.workspace.fs.readDirectory(layoutsDir))
 				.filter(([fileName, type]) => /^(.+)\.json$/.test(fileName) && type === vscode.FileType.File)
 				.map(([fileName, _]) => /^(.+)\.json$/.exec(fileName)![1]);
+
+			if (!sort) {
+				return names;
+			}
+
+			switch (this.sortBy) {
+				case SortMethod.NAME: {
+					return names.sort((a, b) => a.localeCompare(b));
+				}
+				case SortMethod.RECENT: {
+					const decoder = new TextDecoder();
+					const name_time = await Promise.all(
+						names.map(async (name) => {
+							const uri = this.getLayoutUri(name);
+							try {
+								const content = await vscode.workspace.fs.readFile(uri);
+								const json = decoder.decode(content);
+								const timestamp = JSON.parse(json).timestamp ?? 0;
+								return [name, timestamp] as const;
+							} catch (e) {
+								return [name, 0] as const;
+							}
+						})
+					);
+					return name_time.sort((a, b) => b[1] - a[1]).map(([name, _]) => name);
+				}
+			}
 		} catch (e) {
 			return [];
 		}

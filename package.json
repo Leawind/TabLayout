@@ -80,6 +80,26 @@
 					"command": "tab-layout.refresh_layouts",
 					"group": "navigation@3",
 					"when": "view == tab-layout"
+				},
+				{
+					"command": "tab-layout.sort_by_name",
+					"group": "z_commands@1",
+					"when": "view == tab-layout && tab-layout.sort_by != name"
+				},
+				{
+					"command": "tab-layout.sort_by_recent",
+					"group": "z_commands@2",
+					"when": "view == tab-layout && tab-layout.sort_by != recent"
+				},
+				{
+					"command": "tab-layout.sort_by_name_checked",
+					"group": "z_commands@1",
+					"when": "view == tab-layout && tab-layout.sort_by == name"
+				},
+				{
+					"command": "tab-layout.sort_by_recent_checked",
+					"group": "z_commands@2",
+					"when": "view == tab-layout && tab-layout.sort_by == recent"
 				}
 			],
 			"view/item/context": [
@@ -117,43 +137,63 @@
 		},
 		"commands": [
 			{
+				"command": "tab-layout.sort_by_name",
+				"title": "  Sort By Name",
+				"when": "false"
+			},
+			{
+				"command": "tab-layout.sort_by_recent",
+				"title": "  Sort By Recent",
+				"when": "false"
+			},
+			{
+				"command": "tab-layout.sort_by_name_checked",
+				"title": "✔ Sort By Name",
+				"when": "false"
+			},
+			{
+				"command": "tab-layout.sort_by_recent_checked",
+				"title": "✓ Sort By Recent",
+				"when": "false"
+			},
+			{
 				"command": "tab-layout.refresh_layouts",
-				"title": "Refresh layouts",
+				"title": "Refresh Layouts View",
 				"icon": "$(refresh)",
 				"when": "false"
 			},
 			{
 				"command": "tab-layout.new",
-				"title": "Create a new layout",
+				"title": "New Layout...",
 				"icon": "$(add)",
 				"when": "false"
 			},
 			{
 				"command": "tab-layout.load",
-				"title": "Load layout",
+				"title": "Load Layout",
 				"icon": "$(run)",
 				"when": "false"
 			},
 			{
 				"command": "tab-layout.save_as",
-				"title": "Save current layout as",
+				"title": "Save Current Layout As...",
 				"icon": "$(save-as)",
 				"when": "false"
 			},
 			{
 				"command": "tab-layout.delete",
-				"title": "Delete layout",
+				"title": "Delete Layout",
 				"icon": "$(trash)",
 				"when": "false"
 			},
 			{
 				"command": "tab-layout.rename",
-				"title": "Rename layout",
+				"title": "Rename Layout",
 				"when": "false"
 			},
 			{
 				"command": "tab-layout.disable",
-				"title": "Disable layout",
+				"title": "Disable Layout",
 				"icon": "$(circle-slash)",
 				"when": "workspaceFolderCount == 1 && tab-layout.enabled"
 			}
