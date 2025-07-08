@@ -5,16 +5,13 @@ import { TabLayoutSystem } from './TabLayout';
  * @template LayoutSnapshotType
  */
 export class TabLayoutTreeDataProvider<LayoutSnapshotType> implements vscode.TreeDataProvider<string> {
-	constructor(private readonly sys: TabLayoutSystem<LayoutSnapshotType>) {}
+	public constructor(private readonly sys: TabLayoutSystem<LayoutSnapshotType>) {}
 
 	// Update data
-	private _onDidChangeTreeData: vscode.EventEmitter<string | undefined | null | void> = new vscode.EventEmitter<
-		string | undefined | null | void
-	>();
-	public onDidChangeTreeData?: vscode.Event<string | void | string[] | null | undefined> | undefined =
-		this._onDidChangeTreeData.event;
-	update(): void {
-		this._onDidChangeTreeData.fire();
+	private readonly onDidChangeTreeDataEmitter: vscode.EventEmitter<void> = new vscode.EventEmitter<void>();
+	public readonly onDidChangeTreeData: vscode.Event<void> = this.onDidChangeTreeDataEmitter.event;
+	public update(): void {
+		this.onDidChangeTreeDataEmitter.fire();
 	}
 
 	public async getTreeItem(name: string): Promise<vscode.TreeItem> {
@@ -31,7 +28,7 @@ export class TabLayoutTreeDataProvider<LayoutSnapshotType> implements vscode.Tre
 			contextValue: isActive ? 'active' : 'inactive',
 		};
 	}
-	public getChildren(element?: string | undefined): vscode.ProviderResult<string[]> {
+	public getChildren(element?: string): vscode.ProviderResult<string[]> {
 		if (element === undefined) {
 			return this.sys.listLayoutNames();
 		} else {

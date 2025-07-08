@@ -4,11 +4,11 @@ import * as vscode from 'vscode';
  * @template LayoutSnapshotType Type of layout
  */
 export abstract class TabLayoutSystem<LayoutSnapshotType> {
-	protected onDidChangeActiveLayoutEmitter = new vscode.EventEmitter<string | undefined>();
+	protected readonly onDidChangeActiveLayoutEmitter = new vscode.EventEmitter<string | undefined>();
 	public readonly onDidChangeActiveLayout: vscode.Event<string | undefined> =
 		this.onDidChangeActiveLayoutEmitter.event;
 
-	protected onDidChangeLayoutsEmitter = new vscode.EventEmitter<void>();
+	protected readonly onDidChangeLayoutsEmitter = new vscode.EventEmitter<void>();
 	public readonly onDidChangeLayouts: vscode.Event<void> = this.onDidChangeLayoutsEmitter.event;
 
 	/**
