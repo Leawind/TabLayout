@@ -6,8 +6,10 @@ Manage layouts in a workspace
 
 ## Features
 
-- Manage layouts in a workspace
-- Switch between saved layouts
+- Manage layouts in tree view
+    - Sort layouts by name or modified time
+    - Switch between saved layouts
+    - Add / Delete / Rename layouts
 - Show current layout name in status bar
 
     ![status-bar](./resources/demos/status-bar.png)
@@ -26,7 +28,7 @@ Layouts are stored at `${workspaceRoot}/.vscode/layouts/${layoutName}.json`
 
 ## Limitations
 
-- Only available for single root workspaces, which is the most common use case.
+- Only available for [single root workspaces](https://code.visualstudio.com/docs/editing/workspaces/multi-root-workspaces), which is the most common use case.
 
 ## When clause context
 
