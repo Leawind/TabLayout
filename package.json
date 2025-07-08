@@ -1,6 +1,6 @@
 {
 	"name": "tab-layout",
-	"displayName": "Tab Layout",
+	"displayName": "%tab-layout%",
 	"description": "Save and load tab layouts in a workspace",
 	"version": "0.0.5",
 	"pricing": "Free",
