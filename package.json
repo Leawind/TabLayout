@@ -109,28 +109,23 @@
 					"when": "view == tab-layout && viewItem == inactive"
 				},
 				{
-					"command": "tab-layout.save_as",
-					"group": "inline@1",
-					"when": "view == tab-layout && viewItem == inactive"
-				},
-				{
-					"command": "tab-layout.delete",
-					"group": "inline@2",
-					"when": "view == tab-layout"
-				},
-				{
 					"command": "tab-layout.load",
 					"group": "navigation",
 					"when": "view == tab-layout && viewItem == inactive"
 				},
 				{
+					"command": "tab-layout.save_as",
+					"group": "navigation",
+					"when": "view == tab-layout && viewItem == inactive"
+				},
+				{
 					"command": "tab-layout.delete",
-					"group": "7_modification",
+					"group": "7_modification@2",
 					"when": "view == tab-layout"
 				},
 				{
 					"command": "tab-layout.rename",
-					"group": "7_modification",
+					"group": "7_modification@2",
 					"when": "view == tab-layout"
 				}
 			]
