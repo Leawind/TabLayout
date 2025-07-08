@@ -34,8 +34,8 @@
 		"fmt": "prettier --write .",
 		"pretest": "run-s compile lint",
 		"recompile": "run-s clean compile",
-		"vscode:prepublish": "pnpm run recompile",
 		"watch": "tsc -watch -p ./",
+		"vsc:reinstall": "node ./out/scripts/reinstall.js",
 		"vsce:package": "vsce package --follow-symlinks",
 		"vsce:publish": "vsce publish --follow-symlinks"
 	},
