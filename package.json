@@ -14,9 +14,10 @@
 		"vscode": "^1.101.0"
 	},
 	"keywords": [
+		"tab",
+		"tabs",
 		"layout",
-		"workspace",
-		"tabs"
+		"workspace"
 	],
 	"categories": [
 		"Other"
@@ -42,6 +43,16 @@
 		"onStartupFinished"
 	],
 	"contributes": {
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "tab-layout",
+					"title": "Tab Layout",
+					"icon": "$(tab-layouts)",
+					"when": "workspaceFolderCount == 1"
+				}
+			]
+		},
 		"views": {
 			"tab-layout": [
 				{
@@ -225,6 +236,6 @@
 		"typescript": "^5.8.3"
 	},
 	"dependencies": {
-		"@leawind/inventory": "npm:@jsr/leawind__inventory@^0.11.1"
+		"@leawind/inventory": "npm:@jsr/leawind__inventory@0.8.1"
 	}
 }

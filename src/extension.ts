@@ -9,21 +9,24 @@ class UserCanceledError extends Error {}
 
 let onDeactivate: undefined | (() => void);
 
+console.log(`Initializing extension: ${CONSTS.EXTENSION_ID}...`);
+
 /**
  * Called when extension is activated
  *
  * The extension is activated the very first time the command is executed
  */
 export async function activate(ctx: vscode.ExtensionContext) {
-	const { Lock } = await import('@leawind/inventory/lock');
-	const { ThrottledAction } = await import('@leawind/inventory/throttled_action');
+	const { Lock, ThrottledAction } = await import('@leawind/inventory');
+
+	console.log(`Activating extension: ${CONSTS.EXTENSION_ID}...`);
 
 	////////////////////////////////////////////////////////////////
 	// Pick implementation
 	////////////////////////////////////////////////////////////////
 
 	const system: TabLayoutSystem<any> = new TabLayoutSystemImpl(ctx);
-	const lock = Lock.of(CONSTS.EXTENSION_ID);
+	const lock = new Lock();
 
 	async function checkAvailable(): Promise<boolean> {
 		if (!(await system.available())) {
@@ -211,7 +214,7 @@ export async function activate(ctx: vscode.ExtensionContext) {
 		async function onChange() {
 			if (await system.available()) {
 				if (lock.getOwner() !== CONSTS.COMMAND_LOAD) {
-					saveAction.execute();
+					saveAction.urge();
 				}
 			}
 		}

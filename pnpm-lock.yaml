@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@leawind/inventory':
-        specifier: npm:@jsr/leawind__inventory@^0.11.1
-        version: '@jsr/leawind__inventory@0.11.1'
+        specifier: npm:@jsr/leawind__inventory@0.8.1
+        version: '@jsr/leawind__inventory@0.8.1'
     devDependencies:
       '@types/mocha':
         specifier: ^10.0.10
@@ -45,6 +45,9 @@ importers:
       npm-run-all:
         specifier: ^4.1.5
         version: 4.1.5
+      prettier:
+        specifier: ^3.6.2
+        version: 3.6.2
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
@@ -558,17 +561,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.29':
     resolution: {integrity: sha512-uw6guiW/gcAGPDhLmd77/6lW8QLeiV5RUTsAX46Db6oLhGaVj4lhnPwb184s1bkc8kdVg/+h988dro8GRDpmYQ==}
 
-  '@jsr/leawind__delegate@0.4.1':
-    resolution: {integrity: sha512-CgmIRxvMD6yu4Ms6Un9XZl/1IReOiMGPkXXg/2S730WFKLFu7gnLqIFCnTwnT3dL4N0CUkEurM9YivT/WU0+Vw==, tarball: https://npm.jsr.io/~/11/@jsr/leawind__delegate/0.4.1.tgz}
-
-  '@jsr/leawind__inventory@0.11.1':
-    resolution: {integrity: sha512-p1L0WJghryOdsLTqrHcDwYqElCqBOkpnpB3yxT6gsABj7plrpFZ5tVGBoMgbeCloYI2Ix56wfr7VtKurkaW3cQ==, tarball: https://npm.jsr.io/~/11/@jsr/leawind__inventory/0.11.1.tgz}
-
-  '@jsr/std__internal@1.0.9':
-    resolution: {integrity: sha512-s+f4qrJzZgPAy7XuFOtgaSaxyPLnnEmAfXGLvRXGxPTL76URLVHkF+hOzqXz+bmk8/awybF6BRsasxtAQOV23Q==, tarball: https://npm.jsr.io/~/11/@jsr/std__internal/1.0.9.tgz}
-
-  '@jsr/std__path@1.1.1':
-    resolution: {integrity: sha512-+x5LgcNUSpMzOZIRmFSjqrMTCxHlgXjWzK8ZFr7lwgHfWZxoVXeis3MFQlkR5mN5uQ61Y1P30Li1PU0yx9uluA==, tarball: https://npm.jsr.io/~/11/@jsr/std__path/1.1.1.tgz}
+  '@jsr/leawind__inventory@0.8.1':
+    resolution: {integrity: sha512-ExPsLbjHGHWO8ZcadqauvNMaXPGHs0/bSxA+5hx2LWVVLNvjbAgGYO+KtO8Myi+Xp/gikLFzeD8DC2asfbX9vw==, tarball: https://npm.jsr.io/~/11/@jsr/leawind__inventory/0.8.1.tgz}
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -2878,6 +2872,11 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
+  prettier@3.6.2:
+    resolution: {integrity: sha512-I7AIg5boAr5R0FFtJ6rCfD+LFsWHp81dolrFD8S79U9tb8Az2nGrJncnMSnys+bpQJfRUzqs9hnA81OAA3hCuQ==}
+    engines: {node: '>=14'}
+    hasBin: true
+
   pretty-bytes@6.1.1:
     resolution: {integrity: sha512-mQUvGU6aUFQ+rNvTIAcZuWGRT9a6f6Yrg9bHs4ImKF+HZCEK+plBvnAZYSIQztknZF2qnzNtr6F8s0+IuptdlQ==}
     engines: {node: ^14.13.1 || >=16.0.0}
@@ -4057,18 +4056,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.4
 
-  '@jsr/leawind__delegate@0.4.1': {}
-
-  '@jsr/leawind__inventory@0.11.1':
-    dependencies:
-      '@jsr/leawind__delegate': 0.4.1
-      '@jsr/std__path': 1.1.1
-
-  '@jsr/std__internal@1.0.9': {}
-
-  '@jsr/std__path@1.1.1':
-    dependencies:
-      '@jsr/std__internal': 1.0.9
+  '@jsr/leawind__inventory@0.8.1': {}
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -6750,6 +6738,8 @@ snapshots:
     optional: true
 
   prelude-ls@1.2.1: {}
+
+  prettier@3.6.2: {}
 
   pretty-bytes@6.1.1: {}
 
