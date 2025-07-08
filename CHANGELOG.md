@@ -1,5 +1,9 @@
 # Change Log
 
+## `v0.0.5`
+
+- fix: extension fails to activate
+
 ## `v0.0.4`
 
 - Add button: Refresh Layouts View
