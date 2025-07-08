@@ -55,7 +55,7 @@
 			"tab-layout": [
 				{
 					"id": "tab-layout",
-					"name": "Tab layout",
+					"name": "%tab-layout%",
 					"visibility": "visible",
 					"icon": "$(tab-layouts)",
 					"initialSize": 20,
@@ -133,62 +133,62 @@
 		"commands": [
 			{
 				"command": "tab-layout.sort_by_name",
-				"title": "  Sort By Name",
+				"title": "%tab-layout.sort_by_name%",
 				"when": "false"
 			},
 			{
 				"command": "tab-layout.sort_by_recent",
-				"title": "  Sort By Recent",
+				"title": "%tab-layout.sort_by_recent%",
 				"when": "false"
 			},
 			{
 				"command": "tab-layout.sort_by_name_checked",
-				"title": "✔ Sort By Name",
+				"title": "%tab-layout.sort_by_name_checked%",
 				"when": "false"
 			},
 			{
 				"command": "tab-layout.sort_by_recent_checked",
-				"title": "✓ Sort By Recent",
+				"title": "%tab-layout.sort_by_recent_checked%",
 				"when": "false"
 			},
 			{
 				"command": "tab-layout.refresh_layouts",
-				"title": "Refresh Layouts View",
+				"title": "%tab-layout.refresh_layouts%",
 				"icon": "$(refresh)",
 				"when": "false"
 			},
 			{
 				"command": "tab-layout.new",
-				"title": "New Layout...",
+				"title": "%tab-layout.new%",
 				"icon": "$(add)",
 				"when": "false"
 			},
 			{
 				"command": "tab-layout.load",
-				"title": "Load Layout",
+				"title": "%tab-layout.load%",
 				"icon": "$(run)",
 				"when": "false"
 			},
 			{
 				"command": "tab-layout.save_as",
-				"title": "Save Current Layout As...",
+				"title": "%tab-layout.save_as%",
 				"icon": "$(save-as)",
 				"when": "false"
 			},
 			{
 				"command": "tab-layout.delete",
-				"title": "Delete Layout",
+				"title": "%tab-layout.delete%",
 				"icon": "$(trash)",
 				"when": "false"
 			},
 			{
 				"command": "tab-layout.rename",
-				"title": "Rename Layout",
+				"title": "%tab-layout.rename%",
 				"when": "false"
 			},
 			{
 				"command": "tab-layout.disable",
-				"title": "Disable Layout",
+				"title": "%tab-layout.disable%",
 				"icon": "$(circle-slash)",
 				"when": "workspaceFolderCount == 1 && tab-layout.enabled"
 			}

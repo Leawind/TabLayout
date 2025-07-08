@@ -1,0 +1,14 @@
+{
+	"tab-layout": "标签布局",
+	"tab-layout.sort_by_name": "  按名称排序",
+	"tab-layout.sort_by_recent": "  按最近使用排序",
+	"tab-layout.sort_by_name_checked": "✔ 按名称排序",
+	"tab-layout.sort_by_recent_checked": "✓ 按最近使用排序",
+	"tab-layout.refresh_layouts": "刷新布局视图",
+	"tab-layout.new": "新建布局...",
+	"tab-layout.load": "加载",
+	"tab-layout.save_as": "存储当前布局到...",
+	"tab-layout.delete": "删除",
+	"tab-layout.rename": "重命名",
+	"tab-layout.disable": "禁用"
+}

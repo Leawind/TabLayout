@@ -1,0 +1,14 @@
+{
+	"tab-layout": "Tab Layout",
+	"tab-layout.sort_by_name": "  Sort By Name",
+	"tab-layout.sort_by_recent": "  Sort By Recent",
+	"tab-layout.sort_by_name_checked": "✔ Sort By Name",
+	"tab-layout.sort_by_recent_checked": "✓ Sort By Recent",
+	"tab-layout.refresh_layouts": "Refresh Layouts View",
+	"tab-layout.new": "New Layout...",
+	"tab-layout.load": "Load Layout",
+	"tab-layout.save_as": "Save Current Layout As...",
+	"tab-layout.delete": "Delete",
+	"tab-layout.rename": "Rename",
+	"tab-layout.disable": "Disable"
+}
