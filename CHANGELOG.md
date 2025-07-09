@@ -1,5 +1,11 @@
 # Change Log
 
+## `v0.0.6`
+
+- Complete localization for `zh-cn`
+- Remove view container `tab-layout`
+- Add view to container `explorer`
+
 ## `v0.0.5`
 
 - fix: extension fails to activate

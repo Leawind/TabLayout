@@ -2,7 +2,7 @@
 	"name": "tab-layout",
 	"displayName": "%tab-layout%",
 	"description": "Save and load tab layouts in a workspace",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"pricing": "Free",
 	"publisher": "Leawind",
 	"license": "MIT",
