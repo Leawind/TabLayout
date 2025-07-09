@@ -1,0 +1,11 @@
+{
+	"TabLayout is not available for current workspace!": "扩展“布局标签”(TabLayout)在当前工作区不可用！",
+	"New Layout": "新建布局",
+	"Layout Name": "布局名称",
+	"Enter a name for the new layout, or leave it empty to use \"${0}\"": "请输入新布局的名称，或留空以使用“${0}”",
+	"Layout name already exists": "布局名称已存在",
+	"Current Layout: {0}": "当前布局：{0}",
+	"Tab Layout is disabled.": "Tab Layout 已禁用。",
+	"Tab Layout": "Tab Layout 标签布局",
+	"Failed to load layout: \"{0}\"": "加载布局未遂：“{0}”"
+}

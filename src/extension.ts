@@ -30,7 +30,7 @@ export async function activate(ctx: vscode.ExtensionContext) {
 
 	async function checkAvailable(): Promise<boolean> {
 		if (!(await system.available())) {
-			vscode.window.showErrorMessage('TabLayout is not available for current workspace!');
+			vscode.window.showErrorMessage(vscode.l10n.t('TabLayout is not available for current workspace!'));
 			return false;
 		}
 		return true;
@@ -50,12 +50,12 @@ export async function activate(ctx: vscode.ExtensionContext) {
 		}
 
 		let name = await vscode.window.showInputBox({
-			title: 'New Layout',
-			placeHolder: 'Layout Name',
-			prompt: `Enter a name for the new layout, or leave it empty to use '${defaultName}'`,
+			title: vscode.l10n.t('New Layout'),
+			placeHolder: vscode.l10n.t('Layout Name'),
+			prompt: vscode.l10n.t('Enter a name for the new layout, or leave it empty to use "${0}"', defaultName),
 			validateInput: async (value) => {
 				if ((await system.getLayout(value)) !== undefined) {
-					return 'Layout name already exists';
+					return vscode.l10n.t('Layout name already exists');
 				}
 				return null;
 			},
@@ -89,10 +89,10 @@ export async function activate(ctx: vscode.ExtensionContext) {
 			const enabled = !!name;
 			if (enabled) {
 				statusBarItem.text = `$(tab-layout) ${name}`;
-				statusBarItem.tooltip = `Current Layout: ${name}`;
+				statusBarItem.tooltip = vscode.l10n.t('Current Layout: {0}', name);
 			} else {
 				statusBarItem.text = `$(tab-layout) <None>`;
-				statusBarItem.tooltip = `Tab Layout is disabled.`;
+				statusBarItem.tooltip = vscode.l10n.t('Tab Layout is disabled.');
 			}
 			statusBarItem.show();
 		} else {
@@ -101,7 +101,7 @@ export async function activate(ctx: vscode.ExtensionContext) {
 	}
 	{
 		statusBarItem.command = CONSTS.COMMAND_FOCUS;
-		statusBarItem.text = 'Tab Layout';
+		statusBarItem.text = vscode.l10n.t('Tab Layout');
 		ctx.subscriptions.push(statusBarItem);
 
 		system.onDidChangeActiveLayout(updateStatusBarItem);
@@ -144,7 +144,7 @@ export async function activate(ctx: vscode.ExtensionContext) {
 					await system.restoreLayout(snapshot);
 					await system.setActiveLayoutName(name);
 				} else {
-					vscode.window.showErrorMessage(`Failed to load layout: "${name}"`);
+					vscode.window.showErrorMessage(vscode.l10n.t('Failed to load layout: "{0}"', name));
 				}
 			},
 			[CONSTS.COMMAND_SAVE_AS]: async (name: string) => {

@@ -1,0 +1,11 @@
+{
+	"TabLayout is not available for current workspace!": "TabLayout is not available for current workspace!",
+	"New Layout": "New Layout",
+	"Layout Name": "Layout Name",
+	"Enter a name for the new layout, or leave it empty to use \"${0}\"": "Enter a name for the new layout, or leave it empty to use \"${0}\"",
+	"Layout name already exists": "Layout name already exists",
+	"Current Layout: {0}": "Current Layout: {0}",
+	"Tab Layout is disabled.": "Tab Layout is disabled.",
+	"Tab Layout": "Tab Layout",
+	"Failed to load layout: \"{0}\"": "Failed to load layout: \"{0}\""
+}
