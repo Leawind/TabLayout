@@ -27,6 +27,7 @@
 	"icon": "resources/icons/logo.png",
 	"scripts": {
 		"svg-to-font": "node ./out/scripts/svg-to-font.js",
+		"watch": "tsc -watch -p ./",
 		"clean": "rimraf ./out",
 		"compile": "tsc -p ./",
 		"test": "vscode-test",
@@ -34,7 +35,6 @@
 		"fmt": "prettier --write .",
 		"pretest": "run-s compile lint",
 		"recompile": "run-s clean compile",
-		"watch": "tsc -watch -p ./",
 		"vsc:reinstall": "node ./out/scripts/reinstall.js",
 		"vsce:package": "vsce package --follow-symlinks",
 		"vsce:publish": "vsce publish --follow-symlinks"
