@@ -1,5 +1,9 @@
 # Change Log
 
+## `v0.0.7`
+
+- Update display name
+
 ## `v0.0.6`
 
 - Complete localization for `zh-cn`
