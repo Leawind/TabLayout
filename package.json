@@ -46,7 +46,7 @@
 	],
 	"contributes": {
 		"views": {
-			"tab-layout": [
+			"explorer": [
 				{
 					"id": "tab-layout",
 					"name": "%tab-layout%",
