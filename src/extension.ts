@@ -140,6 +140,9 @@ export async function activate(ctx: vscode.ExtensionContext) {
 				}
 				const snapshot = await system.getLayout(name);
 				if (snapshot) {
+					//TODO api
+					snapshot.timestamp = Date.now();
+					await system.setLayout(name, snapshot);
 					await system.setActiveLayoutName(undefined);
 					await system.restoreLayout(snapshot);
 					await system.setActiveLayoutName(name);
