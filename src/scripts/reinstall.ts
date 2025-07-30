@@ -4,7 +4,7 @@ import { spawn } from 'child_process';
 
 (async () => {
 	try {
-		const EXT_ID = 'tab-layout';
+		const EXT_ID = 'leawind.tab-layout';
 		const CWD = path.join(__dirname, '../..');
 		const EXT_PATH = path.join(CWD, `${EXT_ID}-temp.vsix`);
 
